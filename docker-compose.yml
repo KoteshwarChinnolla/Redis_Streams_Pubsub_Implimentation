@@ -94,14 +94,34 @@ services:
     networks:
       - redis-network
 
-  Notification:
-    container_name: Notification
-    image: notification:latest
+
+  Notification-streams:
+    container_name: Notification-streams
+    image: notification-streams:latest
     build:
-      context: ./Notifications
+      context: ./Notifications-redis-streams
       dockerfile: Dockerfile
     ports:
       - "8084:8084"
+    depends_on:
+      - redis-master
+      - redis-slave1
+      - redis-slave2
+      - sentinel-0
+      - sentinel-1
+      - sentinel-2
+    networks:
+      - redis-network
+
+
+  Notification-pub-sub:
+    container_name: Notification-pub-sub
+    image: notification-pub-sub:latest
+    build:
+      context: ./Notifications-redis-pubsub
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
     depends_on:
       - redis-master
       - redis-slave1

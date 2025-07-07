@@ -9,6 +9,16 @@
             "projectName": "demo",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificationsApplication<com.example-demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.notifications.NotificationsApplication",
+            "projectName": "com.example-demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
